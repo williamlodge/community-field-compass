@@ -1,0 +1,1220 @@
+[
+  {
+    "description": "Care for children ages 6 weeks to 12 years. Evening care runs past midnight on weekdays.",
+    "documents": [
+      "Child's immunization record",
+      "Proof of work or school schedule"
+    ],
+    "intake": "Call enrollment to ask about current openings and schedule a visit.",
+    "keywords": [
+      "childcare",
+      "evening",
+      "night shift",
+      "overnight",
+      "infant",
+      "toddler",
+      "school age"
+    ],
+    "sources": [
+      {
+        "id": "src-sample",
+        "name": "FieldCompass sample fixtures",
+        "url": "https://example.org/fieldcompass-fixtures",
+        "rights": "Fictional test data. Not for publication."
+      }
+    ],
+    "source_updated_at": "2026-09-02T00:00:00Z",
+    "fetched_at": "2026-10-01T06:00:00Z",
+    "reviewed_at": "2026-10-03T17:00:00Z",
+    "record_version": 1,
+    "publication_status": "published",
+    "operating_status": "active",
+    "is_sample": true,
+    "id": "res-evening-childcare",
+    "organization_id": "org-larkspur",
+    "organization_name": "Larkspur Family Services (Sample)",
+    "name": "Evening and Overnight Childcare (Sample)",
+    "summary": "Licensed childcare with evening and overnight hours for parents who work late shifts.",
+    "category_ids": [
+      "children-families"
+    ],
+    "service_area": {
+      "type": "counties",
+      "counties": [
+        "Denver"
+      ]
+    },
+    "modes": [
+      "in_person"
+    ],
+    "locations": [
+      {
+        "id": "loc-larkspur-1",
+        "access": "physical",
+        "address_visibility": "public",
+        "address": {
+          "street": "1200 Example Ave",
+          "city": "Denver",
+          "zip": "80205",
+          "county": "Denver"
+        },
+        "notes": null
+      }
+    ],
+    "contacts": [
+      {
+        "channel": "phone",
+        "value": "303-555-0110",
+        "label": "Enrollment",
+        "notes": null,
+        "source_id": "src-sample"
+      },
+      {
+        "channel": "website",
+        "value": "https://example.org/larkspur-evening-care",
+        "label": null,
+        "notes": null,
+        "source_id": "src-sample"
+      }
+    ],
+    "eligibility": "Children ages 6 weeks to 12 years. Parent or guardian must be working or in school during care hours.",
+    "cost": {
+      "kind": "sliding_scale",
+      "details": "Weekly fee based on household size and income. Accepts CCCAP."
+    },
+    "languages": [
+      "en",
+      "es"
+    ],
+    "accessibility": {
+      "wheelchair": "yes",
+      "notes": "Step-free entrance on the north side."
+    },
+    "schedule": {
+      "time_zone": "America/Denver",
+      "regular": [
+        {
+          "day": 1,
+          "opens": "15:00",
+          "closes": "00:30"
+        },
+        {
+          "day": 2,
+          "opens": "15:00",
+          "closes": "00:30"
+        },
+        {
+          "day": 3,
+          "opens": "15:00",
+          "closes": "00:30"
+        },
+        {
+          "day": 4,
+          "opens": "15:00",
+          "closes": "00:30"
+        },
+        {
+          "day": 5,
+          "opens": "15:00",
+          "closes": "00:30"
+        }
+      ],
+      "exceptions": [
+        {
+          "date": "2026-11-26",
+          "closed": true,
+          "hours": null,
+          "label": "Thanksgiving"
+        }
+      ],
+      "intake_cutoff_note": "Enrollment calls answered until 8:00 PM.",
+      "source_id": "src-sample"
+    }
+  },
+  {
+    "description": null,
+    "documents": [
+      "Recent pay stubs or proof of income",
+      "Child's birth certificate or other proof of age",
+      "Proof of address"
+    ],
+    "intake": "Walk in during listed hours or call to book a phone appointment.",
+    "keywords": [
+      "cccap",
+      "childcare assistance",
+      "subsidy",
+      "pay for childcare",
+      "financial help"
+    ],
+    "sources": [
+      {
+        "id": "src-sample",
+        "name": "FieldCompass sample fixtures",
+        "url": "https://example.org/fieldcompass-fixtures",
+        "rights": "Fictional test data. Not for publication."
+      }
+    ],
+    "source_updated_at": "2026-09-02T00:00:00Z",
+    "fetched_at": "2026-10-01T06:00:00Z",
+    "reviewed_at": "2026-10-03T17:00:00Z",
+    "record_version": 1,
+    "publication_status": "published",
+    "operating_status": "active",
+    "is_sample": true,
+    "id": "res-childcare-cost-help",
+    "organization_id": "org-plains",
+    "organization_name": "High Plains Family Resource Center (Sample)",
+    "name": "Childcare Cost Assistance Navigation (Sample)",
+    "summary": "Help checking eligibility for childcare financial assistance and completing the application.",
+    "category_ids": [
+      "children-families",
+      "benefits"
+    ],
+    "service_area": {
+      "type": "counties",
+      "counties": [
+        "Arapahoe",
+        "Adams",
+        "Denver"
+      ]
+    },
+    "modes": [
+      "in_person",
+      "phone"
+    ],
+    "locations": [
+      {
+        "id": "loc-plains-1",
+        "access": "physical",
+        "address_visibility": "public",
+        "address": {
+          "street": "45 Sample Pkwy",
+          "city": "Aurora",
+          "zip": "80012",
+          "county": "Arapahoe"
+        },
+        "notes": null
+      }
+    ],
+    "contacts": [
+      {
+        "channel": "phone",
+        "value": "303-555-0122",
+        "label": null,
+        "notes": null,
+        "source_id": "src-sample"
+      },
+      {
+        "channel": "website",
+        "value": "https://example.org/high-plains-childcare-help",
+        "label": null,
+        "notes": null,
+        "source_id": "src-sample"
+      }
+    ],
+    "eligibility": "Families living in Adams, Arapahoe, or Denver County. Program staff check income guidelines with you.",
+    "cost": {
+      "kind": "free",
+      "details": null
+    },
+    "languages": [
+      "en",
+      "es"
+    ],
+    "accessibility": {
+      "wheelchair": "yes",
+      "notes": null
+    },
+    "schedule": {
+      "time_zone": "America/Denver",
+      "regular": [
+        {
+          "day": 1,
+          "opens": "09:00",
+          "closes": "17:00"
+        },
+        {
+          "day": 2,
+          "opens": "09:00",
+          "closes": "17:00"
+        },
+        {
+          "day": 3,
+          "opens": "09:00",
+          "closes": "17:00"
+        },
+        {
+          "day": 4,
+          "opens": "09:00",
+          "closes": "17:00"
+        },
+        {
+          "day": 5,
+          "opens": "09:00",
+          "closes": "17:00"
+        }
+      ],
+      "exceptions": [],
+      "intake_cutoff_note": "Walk-ins accepted until 4:00 PM.",
+      "source_id": "src-sample"
+    }
+  },
+  {
+    "description": null,
+    "documents": null,
+    "intake": null,
+    "keywords": [
+      "childcare",
+      "home daycare"
+    ],
+    "sources": [
+      {
+        "id": "src-sample",
+        "name": "FieldCompass sample fixtures",
+        "url": "https://example.org/fieldcompass-fixtures",
+        "rights": "Fictional test data. Not for publication."
+      }
+    ],
+    "source_updated_at": "2026-09-02T00:00:00Z",
+    "fetched_at": "2026-10-01T06:00:00Z",
+    "reviewed_at": null,
+    "record_version": 1,
+    "publication_status": "published",
+    "operating_status": "active",
+    "is_sample": true,
+    "id": "res-family-home-care",
+    "organization_id": "org-northfield",
+    "organization_name": "Northfield Family Childcare Home (Sample)",
+    "name": "Northfield Family Childcare Home (Sample)",
+    "summary": "Small home-based childcare program.",
+    "category_ids": [
+      "children-families"
+    ],
+    "service_area": {
+      "type": "counties",
+      "counties": [
+        "Denver"
+      ]
+    },
+    "modes": [
+      "in_person"
+    ],
+    "locations": [
+      {
+        "id": "loc-northfield-1",
+        "access": "physical",
+        "address_visibility": "public",
+        "address": {
+          "street": "88 Placeholder St",
+          "city": "Denver",
+          "zip": "80207",
+          "county": "Denver"
+        },
+        "notes": null
+      }
+    ],
+    "contacts": [
+      {
+        "channel": "phone",
+        "value": "303-555-0131",
+        "label": null,
+        "notes": null,
+        "source_id": "src-sample"
+      }
+    ],
+    "eligibility": null,
+    "cost": {
+      "kind": "unknown",
+      "details": null
+    },
+    "languages": null,
+    "accessibility": {
+      "wheelchair": "unknown",
+      "notes": null
+    },
+    "schedule": null
+  },
+  {
+    "description": "Staff explain energy assistance programs, help you prepare an application, and can tell you what to do if you have a shutoff notice.",
+    "documents": [
+      "Most recent utility bill",
+      "Any shutoff or past-due notice",
+      "Proof of household income"
+    ],
+    "intake": "Call the help line. Have your bill nearby.",
+    "keywords": [
+      "utilities",
+      "electric",
+      "gas",
+      "heating",
+      "shutoff",
+      "disconnect",
+      "energy assistance"
+    ],
+    "sources": [
+      {
+        "id": "src-sample",
+        "name": "FieldCompass sample fixtures",
+        "url": "https://example.org/fieldcompass-fixtures",
+        "rights": "Fictional test data. Not for publication."
+      }
+    ],
+    "source_updated_at": "2026-09-02T00:00:00Z",
+    "fetched_at": "2026-10-01T06:00:00Z",
+    "reviewed_at": "2026-10-03T17:00:00Z",
+    "record_version": 1,
+    "publication_status": "published",
+    "operating_status": "active",
+    "is_sample": true,
+    "id": "res-energy-bill-help",
+    "organization_id": "org-frontrange-energy",
+    "organization_name": "Front Range Energy Assistance Line (Sample)",
+    "name": "Home Energy Bill Help Line (Sample)",
+    "summary": "Phone help for people behind on gas or electric bills, including shutoff notices.",
+    "category_ids": [
+      "housing-utilities",
+      "benefits"
+    ],
+    "service_area": {
+      "type": "statewide"
+    },
+    "modes": [
+      "phone",
+      "virtual"
+    ],
+    "locations": [
+      {
+        "id": "loc-energy-virtual",
+        "access": "virtual",
+        "address_visibility": "public",
+        "address": null,
+        "notes": "Phone and online only."
+      }
+    ],
+    "contacts": [
+      {
+        "channel": "phone",
+        "value": "303-555-0140",
+        "label": "Help line",
+        "notes": null,
+        "source_id": "src-sample"
+      },
+      {
+        "channel": "website",
+        "value": "https://example.org/energy-bill-help",
+        "label": null,
+        "notes": null,
+        "source_id": "src-sample"
+      }
+    ],
+    "eligibility": "Colorado households. Income limits apply to most assistance programs; staff can check with you.",
+    "cost": {
+      "kind": "free",
+      "details": null
+    },
+    "languages": [
+      "en",
+      "es"
+    ],
+    "accessibility": {
+      "wheelchair": "unknown",
+      "notes": "Phone service; relay calls accepted."
+    },
+    "schedule": {
+      "time_zone": "America/Denver",
+      "regular": [
+        {
+          "day": 1,
+          "opens": "08:00",
+          "closes": "17:00"
+        },
+        {
+          "day": 2,
+          "opens": "08:00",
+          "closes": "17:00"
+        },
+        {
+          "day": 3,
+          "opens": "08:00",
+          "closes": "17:00"
+        },
+        {
+          "day": 4,
+          "opens": "08:00",
+          "closes": "17:00"
+        },
+        {
+          "day": 5,
+          "opens": "08:00",
+          "closes": "17:00"
+        }
+      ],
+      "exceptions": [],
+      "intake_cutoff_note": null,
+      "source_id": "src-sample"
+    }
+  },
+  {
+    "description": null,
+    "documents": [
+      "Water account number"
+    ],
+    "intake": "Apply online or by phone.",
+    "keywords": [
+      "water bill",
+      "payment plan",
+      "utilities",
+      "credit"
+    ],
+    "sources": [
+      {
+        "id": "src-sample",
+        "name": "FieldCompass sample fixtures",
+        "url": "https://example.org/fieldcompass-fixtures",
+        "rights": "Fictional test data. Not for publication."
+      }
+    ],
+    "source_updated_at": "2026-09-02T00:00:00Z",
+    "fetched_at": "2026-10-01T06:00:00Z",
+    "reviewed_at": "2026-10-03T17:00:00Z",
+    "record_version": 1,
+    "publication_status": "published",
+    "operating_status": "active",
+    "is_sample": true,
+    "id": "res-water-hardship",
+    "organization_id": "org-citywater",
+    "organization_name": "Metro Water Customer Care (Sample)",
+    "name": "Water Bill Hardship Program (Sample)",
+    "summary": "Payment plans and one-time credits for residential water customers facing hardship.",
+    "category_ids": [
+      "housing-utilities"
+    ],
+    "service_area": {
+      "type": "zips",
+      "zips": [
+        "80202",
+        "80203",
+        "80204",
+        "80205",
+        "80206",
+        "80211",
+        "80218",
+        "80219",
+        "80220"
+      ]
+    },
+    "modes": [
+      "phone",
+      "virtual"
+    ],
+    "locations": [
+      {
+        "id": "loc-water-virtual",
+        "access": "virtual",
+        "address_visibility": "public",
+        "address": null,
+        "notes": null
+      }
+    ],
+    "contacts": [
+      {
+        "channel": "phone",
+        "value": "303-555-0147",
+        "label": null,
+        "notes": null,
+        "source_id": "src-sample"
+      },
+      {
+        "channel": "website",
+        "value": "https://example.org/water-hardship",
+        "label": null,
+        "notes": null,
+        "source_id": "src-sample"
+      }
+    ],
+    "eligibility": "Residential account holders in the listed service ZIP codes.",
+    "cost": {
+      "kind": "free",
+      "details": null
+    },
+    "languages": [
+      "en"
+    ],
+    "accessibility": {
+      "wheelchair": "unknown",
+      "notes": null
+    },
+    "schedule": {
+      "time_zone": "America/Denver",
+      "regular": [
+        {
+          "day": 1,
+          "opens": "07:30",
+          "closes": "18:00"
+        },
+        {
+          "day": 2,
+          "opens": "07:30",
+          "closes": "18:00"
+        },
+        {
+          "day": 3,
+          "opens": "07:30",
+          "closes": "18:00"
+        },
+        {
+          "day": 4,
+          "opens": "07:30",
+          "closes": "18:00"
+        },
+        {
+          "day": 5,
+          "opens": "07:30",
+          "closes": "18:00"
+        }
+      ],
+      "exceptions": [],
+      "intake_cutoff_note": null,
+      "source_id": "src-sample"
+    }
+  },
+  {
+    "description": null,
+    "documents": [],
+    "intake": "Arrive during distribution hours. Bring your own bags if you can.",
+    "keywords": [
+      "food",
+      "groceries",
+      "pantry",
+      "produce",
+      "diapers"
+    ],
+    "sources": [
+      {
+        "id": "src-sample",
+        "name": "FieldCompass sample fixtures",
+        "url": "https://example.org/fieldcompass-fixtures",
+        "rights": "Fictional test data. Not for publication."
+      }
+    ],
+    "source_updated_at": "2026-09-02T00:00:00Z",
+    "fetched_at": "2026-10-01T06:00:00Z",
+    "reviewed_at": "2026-10-03T17:00:00Z",
+    "record_version": 1,
+    "publication_status": "published",
+    "operating_status": "active",
+    "is_sample": true,
+    "id": "res-food-pantry-east",
+    "organization_id": "org-eastside",
+    "organization_name": "Eastside Neighbors (Sample)",
+    "name": "Eastside Community Food Pantry (Sample)",
+    "summary": "Groceries, fresh produce, and diapers once a week. No appointment needed.",
+    "category_ids": [
+      "food"
+    ],
+    "service_area": {
+      "type": "counties",
+      "counties": [
+        "Denver",
+        "Adams"
+      ]
+    },
+    "modes": [
+      "in_person"
+    ],
+    "locations": [
+      {
+        "id": "loc-eastside-1",
+        "access": "physical",
+        "address_visibility": "public",
+        "address": {
+          "street": "300 Sample Blvd",
+          "city": "Denver",
+          "zip": "80220",
+          "county": "Denver"
+        },
+        "notes": null
+      }
+    ],
+    "contacts": [
+      {
+        "channel": "phone",
+        "value": "303-555-0155",
+        "label": null,
+        "notes": null,
+        "source_id": "src-sample"
+      }
+    ],
+    "eligibility": "Open to anyone in Denver or Adams County.",
+    "cost": {
+      "kind": "free",
+      "details": null
+    },
+    "languages": [
+      "en",
+      "es",
+      "vi"
+    ],
+    "accessibility": {
+      "wheelchair": "yes",
+      "notes": null
+    },
+    "schedule": {
+      "time_zone": "America/Denver",
+      "regular": [
+        {
+          "day": 3,
+          "opens": "16:00",
+          "closes": "19:00"
+        },
+        {
+          "day": 6,
+          "opens": "09:00",
+          "closes": "12:00"
+        }
+      ],
+      "exceptions": [],
+      "intake_cutoff_note": null,
+      "source_id": "src-sample"
+    }
+  },
+  {
+    "description": null,
+    "documents": null,
+    "intake": "Book at least 2 business days ahead by phone.",
+    "keywords": [
+      "rides",
+      "transportation",
+      "wheelchair",
+      "medical appointment",
+      "seniors",
+      "older adults"
+    ],
+    "sources": [
+      {
+        "id": "src-sample",
+        "name": "FieldCompass sample fixtures",
+        "url": "https://example.org/fieldcompass-fixtures",
+        "rights": "Fictional test data. Not for publication."
+      }
+    ],
+    "source_updated_at": "2026-09-02T00:00:00Z",
+    "fetched_at": "2026-10-01T06:00:00Z",
+    "reviewed_at": "2026-10-03T17:00:00Z",
+    "record_version": 1,
+    "publication_status": "published",
+    "operating_status": "active",
+    "is_sample": true,
+    "id": "res-accessible-rides",
+    "organization_id": "org-peakride",
+    "organization_name": "PeakRide Community Transit (Sample)",
+    "name": "Accessible Rides to Medical Appointments (Sample)",
+    "summary": "Door-to-door wheelchair-accessible rides to medical and benefits appointments for older adults and people with disabilities.",
+    "category_ids": [
+      "transportation",
+      "aging-disability"
+    ],
+    "service_area": {
+      "type": "counties",
+      "counties": [
+        "Jefferson",
+        "Denver"
+      ]
+    },
+    "modes": [
+      "in_person",
+      "phone"
+    ],
+    "locations": [
+      {
+        "id": "loc-peakride-1",
+        "access": "physical",
+        "address_visibility": "public",
+        "address": {
+          "street": "9 Demo Way",
+          "city": "Lakewood",
+          "zip": "80226",
+          "county": "Jefferson"
+        },
+        "notes": null
+      }
+    ],
+    "contacts": [
+      {
+        "channel": "phone",
+        "value": "303-555-0163",
+        "label": "Ride booking",
+        "notes": null,
+        "source_id": "src-sample"
+      }
+    ],
+    "eligibility": "Adults 60 and older, or people of any age with a disability that limits use of regular transit.",
+    "cost": {
+      "kind": "fee",
+      "details": "Suggested donation per ride; no one is turned away for inability to pay."
+    },
+    "languages": [
+      "en"
+    ],
+    "accessibility": {
+      "wheelchair": "yes",
+      "notes": "Lift-equipped vans."
+    },
+    "schedule": {
+      "time_zone": "America/Denver",
+      "regular": [
+        {
+          "day": 1,
+          "opens": "07:00",
+          "closes": "16:00"
+        },
+        {
+          "day": 2,
+          "opens": "07:00",
+          "closes": "16:00"
+        },
+        {
+          "day": 3,
+          "opens": "07:00",
+          "closes": "16:00"
+        },
+        {
+          "day": 4,
+          "opens": "07:00",
+          "closes": "16:00"
+        },
+        {
+          "day": 5,
+          "opens": "07:00",
+          "closes": "16:00"
+        }
+      ],
+      "exceptions": [],
+      "intake_cutoff_note": "Booking line closes at 3:00 PM.",
+      "source_id": "src-sample"
+    }
+  },
+  {
+    "description": null,
+    "documents": [],
+    "intake": "Call the hotline. Location is shared only by staff.",
+    "keywords": [
+      "domestic violence",
+      "safe shelter",
+      "advocacy",
+      "abuse"
+    ],
+    "sources": [
+      {
+        "id": "src-sample",
+        "name": "FieldCompass sample fixtures",
+        "url": "https://example.org/fieldcompass-fixtures",
+        "rights": "Fictional test data. Not for publication."
+      }
+    ],
+    "source_updated_at": "2026-09-02T00:00:00Z",
+    "fetched_at": "2026-10-01T06:00:00Z",
+    "reviewed_at": "2026-10-03T17:00:00Z",
+    "record_version": 1,
+    "publication_status": "published",
+    "operating_status": "active",
+    "is_sample": true,
+    "id": "res-safe-shelter",
+    "organization_id": "org-safeharbor",
+    "organization_name": "Safe Harbor Services (Sample)",
+    "name": "Confidential Family Safety Shelter (Sample)",
+    "summary": "Confidential emergency shelter and advocacy for people experiencing domestic violence.",
+    "category_ids": [
+      "legal-safety",
+      "housing-utilities"
+    ],
+    "service_area": {
+      "type": "counties",
+      "counties": [
+        "Denver",
+        "Arapahoe",
+        "Adams",
+        "Jefferson"
+      ]
+    },
+    "modes": [
+      "phone",
+      "in_person"
+    ],
+    "locations": [
+      {
+        "id": "loc-safeharbor-secret",
+        "access": "physical",
+        "address_visibility": "confidential",
+        "address": {
+          "street": "CONFIDENTIAL-TEST-ADDRESS 1 Hidden Ln",
+          "city": "Denver",
+          "zip": "80204",
+          "county": "Denver"
+        },
+        "notes": null
+      }
+    ],
+    "contacts": [
+      {
+        "channel": "phone",
+        "value": "303-555-0170",
+        "label": "Hotline",
+        "notes": "The source lists this hotline as answered 24 hours a day.",
+        "source_id": "src-sample"
+      }
+    ],
+    "eligibility": "Adults and families experiencing domestic violence.",
+    "cost": {
+      "kind": "free",
+      "details": null
+    },
+    "languages": [
+      "en",
+      "es"
+    ],
+    "accessibility": {
+      "wheelchair": "unknown",
+      "notes": null
+    },
+    "schedule": null
+  },
+  {
+    "description": null,
+    "documents": [
+      "Photo ID if you have one",
+      "Proof of income",
+      "Proof of address"
+    ],
+    "intake": "Book an appointment online or by phone.",
+    "keywords": [
+      "snap",
+      "medicaid",
+      "health first colorado",
+      "application",
+      "benefits"
+    ],
+    "sources": [
+      {
+        "id": "src-sample",
+        "name": "FieldCompass sample fixtures",
+        "url": "https://example.org/fieldcompass-fixtures",
+        "rights": "Fictional test data. Not for publication."
+      }
+    ],
+    "source_updated_at": "2026-09-02T00:00:00Z",
+    "fetched_at": "2026-10-01T06:00:00Z",
+    "reviewed_at": "2026-10-03T17:00:00Z",
+    "record_version": 1,
+    "publication_status": "published",
+    "operating_status": "active",
+    "is_sample": true,
+    "id": "res-benefits-coaching",
+    "organization_id": "org-benefitsco",
+    "organization_name": "Colorado Benefits Coaching Network (Sample)",
+    "name": "Virtual Benefits Application Coaching (Sample)",
+    "summary": "Video or phone coaching to prepare applications for food, health coverage, and cash assistance.",
+    "category_ids": [
+      "benefits"
+    ],
+    "service_area": {
+      "type": "remote"
+    },
+    "modes": [
+      "virtual",
+      "phone"
+    ],
+    "locations": [
+      {
+        "id": "loc-benefits-virtual",
+        "access": "virtual",
+        "address_visibility": "public",
+        "address": null,
+        "notes": null
+      }
+    ],
+    "contacts": [
+      {
+        "channel": "phone",
+        "value": "303-555-0181",
+        "label": null,
+        "notes": null,
+        "source_id": "src-sample"
+      },
+      {
+        "channel": "website",
+        "value": "https://example.org/benefits-coaching",
+        "label": null,
+        "notes": null,
+        "source_id": "src-sample"
+      }
+    ],
+    "eligibility": "Colorado residents.",
+    "cost": {
+      "kind": "free",
+      "details": null
+    },
+    "languages": [
+      "es",
+      "en"
+    ],
+    "accessibility": {
+      "wheelchair": "unknown",
+      "notes": null
+    },
+    "schedule": {
+      "time_zone": "America/Denver",
+      "regular": [
+        {
+          "day": 1,
+          "opens": "10:00",
+          "closes": "19:00"
+        },
+        {
+          "day": 2,
+          "opens": "10:00",
+          "closes": "19:00"
+        },
+        {
+          "day": 3,
+          "opens": "10:00",
+          "closes": "19:00"
+        },
+        {
+          "day": 4,
+          "opens": "10:00",
+          "closes": "19:00"
+        },
+        {
+          "day": 5,
+          "opens": "10:00",
+          "closes": "19:00"
+        },
+        {
+          "day": 6,
+          "opens": "10:00",
+          "closes": "14:00"
+        }
+      ],
+      "exceptions": [],
+      "intake_cutoff_note": null,
+      "source_id": "src-sample"
+    }
+  },
+  {
+    "description": null,
+    "documents": [
+      "Disconnection notice"
+    ],
+    "intake": "Walk in during clinic hours.",
+    "keywords": [
+      "shutoff",
+      "disconnect",
+      "utilities",
+      "notice"
+    ],
+    "sources": [
+      {
+        "id": "src-sample",
+        "name": "FieldCompass sample fixtures",
+        "url": "https://example.org/fieldcompass-fixtures",
+        "rights": "Fictional test data. Not for publication."
+      }
+    ],
+    "source_updated_at": "2026-09-02T00:00:00Z",
+    "fetched_at": "2026-10-01T06:00:00Z",
+    "reviewed_at": "2026-10-03T17:00:00Z",
+    "record_version": 1,
+    "publication_status": "published",
+    "operating_status": "temporarily_closed",
+    "is_sample": true,
+    "id": "res-shutoff-clinic",
+    "organization_id": "org-adamslegal",
+    "organization_name": "Adams Tenant and Utility Clinic (Sample)",
+    "name": "Utility Shutoff Prevention Clinic (Sample)",
+    "summary": "Walk-in clinic for people with utility disconnection notices.",
+    "category_ids": [
+      "housing-utilities",
+      "legal-safety"
+    ],
+    "service_area": {
+      "type": "counties",
+      "counties": [
+        "Adams"
+      ]
+    },
+    "modes": [
+      "in_person"
+    ],
+    "locations": [
+      {
+        "id": "loc-adamslegal-1",
+        "access": "physical",
+        "address_visibility": "public",
+        "address": {
+          "street": "12 Sample Ct",
+          "city": "Thornton",
+          "zip": "80229",
+          "county": "Adams"
+        },
+        "notes": null
+      }
+    ],
+    "contacts": [
+      {
+        "channel": "phone",
+        "value": "303-555-0188",
+        "label": null,
+        "notes": null,
+        "source_id": "src-sample"
+      }
+    ],
+    "eligibility": "Adams County residents.",
+    "cost": {
+      "kind": "free",
+      "details": null
+    },
+    "languages": [
+      "en",
+      "es"
+    ],
+    "accessibility": {
+      "wheelchair": "yes",
+      "notes": null
+    },
+    "schedule": {
+      "time_zone": "America/Denver",
+      "regular": [
+        {
+          "day": 2,
+          "opens": "13:00",
+          "closes": "17:00"
+        }
+      ],
+      "exceptions": [],
+      "intake_cutoff_note": null,
+      "source_id": "src-sample"
+    }
+  },
+  {
+    "description": null,
+    "documents": null,
+    "intake": null,
+    "keywords": [
+      "rent"
+    ],
+    "sources": [
+      {
+        "id": "src-sample",
+        "name": "FieldCompass sample fixtures",
+        "url": "https://example.org/fieldcompass-fixtures",
+        "rights": "Fictional test data. Not for publication."
+      }
+    ],
+    "source_updated_at": "2026-09-02T00:00:00Z",
+    "fetched_at": "2026-10-01T06:00:00Z",
+    "reviewed_at": "2026-10-03T17:00:00Z",
+    "record_version": 3,
+    "publication_status": "withdrawn",
+    "operating_status": "active",
+    "is_sample": true,
+    "id": "res-former-rent-fund",
+    "organization_id": "org-former",
+    "organization_name": "Former Rent Relief Fund (Sample)",
+    "name": "Former Rent Relief Fund (Sample)",
+    "summary": "Program ended.",
+    "category_ids": [
+      "housing-utilities"
+    ],
+    "service_area": {
+      "type": "counties",
+      "counties": [
+        "Denver"
+      ]
+    },
+    "modes": [
+      "phone"
+    ],
+    "locations": [],
+    "contacts": [
+      {
+        "channel": "phone",
+        "value": "303-555-0195",
+        "label": null,
+        "notes": null,
+        "source_id": "src-sample"
+      }
+    ],
+    "eligibility": null,
+    "cost": {
+      "kind": "unknown",
+      "details": null
+    },
+    "languages": null,
+    "accessibility": {
+      "wheelchair": "unknown",
+      "notes": null
+    },
+    "schedule": null
+  },
+  {
+    "description": null,
+    "documents": null,
+    "intake": null,
+    "keywords": [
+      "food"
+    ],
+    "sources": [
+      {
+        "id": "src-sample",
+        "name": "FieldCompass sample fixtures",
+        "url": "https://example.org/fieldcompass-fixtures",
+        "rights": "Fictional test data. Not for publication."
+      }
+    ],
+    "source_updated_at": "2026-09-02T00:00:00Z",
+    "fetched_at": "2026-10-01T06:00:00Z",
+    "reviewed_at": null,
+    "record_version": 1,
+    "publication_status": "draft",
+    "operating_status": "active",
+    "is_sample": true,
+    "id": "res-draft-unreviewed",
+    "organization_id": "org-draft",
+    "organization_name": "Draft Record (Sample)",
+    "name": "Unreviewed Draft Listing (Sample)",
+    "summary": "Staged record awaiting review. Must not be public.",
+    "category_ids": [
+      "food"
+    ],
+    "service_area": {
+      "type": "statewide"
+    },
+    "modes": [
+      "phone"
+    ],
+    "locations": [],
+    "contacts": [
+      {
+        "channel": "phone",
+        "value": "303-555-0199",
+        "label": null,
+        "notes": null,
+        "source_id": "src-sample"
+      }
+    ],
+    "eligibility": null,
+    "cost": {
+      "kind": "free",
+      "details": null
+    },
+    "languages": [
+      "en"
+    ],
+    "accessibility": {
+      "wheelchair": "unknown",
+      "notes": null
+    },
+    "schedule": null
+  }
+]
