@@ -9,7 +9,7 @@
 
 Build a Colorado community resource navigator for everyday needs, with an accessible mobile website, grounded 24/7 AI chat, reliable resource discovery, practical guides, and saved next-step plans. Weather and official local alerts are supporting features. Browser voice and a dedicated AI phone number follow after the core pilot is reliable.
 
-The product is for the whole community. Do not restore homelessness-focused branding or prioritize shelter above every other need. Use FieldCompass as a configurable working name with the descriptor “Colorado Community Resource Navigator.” The name has not been cleared or registered.
+The product is for the whole community. Give food, healthcare, childcare, housing, employment, transportation, benefits, and other community needs balanced attention. Use FieldCompass as a configurable working name with the descriptor “Colorado Community Resource Navigator.” The name has not been cleared or registered.
 
 This handoff describes proposed implementation work. It does not confirm repository access, data rights, hosting, credentials, production integrations, or ownership of the current website. Begin with discovery when implementation is authorized. Do not publish, purchase services, migrate a domain, create a public phone line, or contact outside organizations solely because those actions appear in this document.
 

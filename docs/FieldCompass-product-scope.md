@@ -45,7 +45,7 @@ Possible homepage copy: “Find the right local support.” Supporting copy: “
 
 Before adopting the name, check trademark conflicts, domain and social-handle availability, pronunciation, spelling by phone, and reactions from community members. No name, trademark, domain, or legal clearance has been performed. Do not purchase or register anything as part of this handoff.
 
-FieldCompass must not present itself as the official 211 Colorado service or imply a partnership unless one is established. A reference or link to 211 is different from permission to redistribute its directory. The existing homelesscolorado.com domain can remain an entry point while the owner considers a broader brand. Any domain migration requires a separate redirect and launch plan.
+FieldCompass must not present itself as the official 211 Colorado service or imply a partnership unless one is established. A reference or link to 211 is different from permission to redistribute its directory. Choose a domain that supports the FieldCompass identity and its broad community purpose. Any domain migration requires a separate redirect and launch plan.
 
 ## 3. People and resource coverage
 
@@ -113,7 +113,7 @@ Do not include native app-store apps, automatic benefit applications, identity-d
 
 ## 6. Experience and design requirements
 
-Use the current community-focused mobile concept as the visual direction: [reference mockup](colorado-community-mobile-v3.png). Its previous “Colorado Community” name is superseded by the working FieldCompass name. The earlier homelessness-focused concepts are not the product brief.
+Use the current community-focused mobile concept as the visual direction: [reference mockup](colorado-community-mobile-v3.png). Its previous “Colorado Community” name is superseded by the working FieldCompass name.
 
 Keep the Apple-inspired simplicity: readable system typography, generous touch targets, restrained rounded surfaces, clear focus states, and a small number of obvious actions. Avoid styling that depends on blur, motion, color alone, or a high-end phone. Housing should receive the same treatment as other categories.
 
