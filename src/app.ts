@@ -11,7 +11,10 @@ import type { PageContext } from "./web/layout.js";
 import { detailPage, goneOrMissingPage } from "./web/pages/detail.js";
 import { discoverPage } from "./web/pages/discover.js";
 import { searchPage, type SearchView } from "./web/pages/search.js";
-import { askPage, guidesPage, messagePage, savedPage, urgentPage } from "./web/pages/simple.js";
+import { guidesPage, messagePage, savedPage, urgentPage } from "./web/pages/simple.js";
+import { askPage } from "./web/pages/ask.js";
+import { answerChat, createChatBudget, parseChatInput } from "./ai/chat.js";
+import type { Interpret } from "./ai/openrouter.js";
 
 const MODES: AccessMode[] = ["in_person", "virtual", "phone"];
 const PUBLIC_DIR = fileURLToPath(new URL("../public", import.meta.url));
@@ -56,10 +59,11 @@ export function parseSearch(query: Request["query"]): Omit<SearchView, "result">
   return { params, filters, placeUnrecognized: !!params.place && !place };
 }
 
-export function createApp(repo: ResourceRepository) {
+export function createApp(repo: ResourceRepository, options: { interpret?: Interpret; aiDailyLimit?: number } = {}) {
   const app = express();
   app.disable("x-powered-by");
   app.set("trust proxy", "loopback");
+  const takeBudget = createChatBudget(options.aiDailyLimit ?? 40);
 
   app.use((req, res, next) => {
     req.id = randomUUID();
@@ -92,14 +96,14 @@ export function createApp(repo: ResourceRepository) {
     res.send(discoverPage(ctx(req)));
   });
 
-  app.get("/search", (req, res) => {
+  app.get("/search", async (req, res) => {
     const parsed = parseSearch(req.query);
-    const result = repo.search(parsed.filters);
+    const result = await repo.search(parsed.filters);
     res.send(searchPage(ctx(req), { ...parsed, result }));
   });
 
-  app.get("/resources/:id", (req, res) => {
-    const found = repo.get(str(req.params.id, 80));
+  app.get("/resources/:id", async (req, res) => {
+    const found = await repo.get(str(req.params.id, 80));
     if (found.status === "published") {
       const ref = req.get("referer");
       const back = ref && /^https?:\/\/[^/]+\/search\?/.test(ref) && new URL(ref).host === req.get("host") ? new URL(ref).pathname + new URL(ref).search : null;
@@ -110,7 +114,7 @@ export function createApp(repo: ResourceRepository) {
   });
 
   app.get("/saved", (req, res) => res.send(savedPage(ctx(req))));
-  app.get("/ask", (req, res) => res.send(askPage(ctx(req))));
+  app.get("/ask", (req, res) => res.send(askPage(ctx(req), !!options.interpret)));
   app.get("/guides", (req, res) => res.send(guidesPage(ctx(req))));
   app.get("/urgent", (req, res) => res.send(urgentPage(ctx(req))));
 
@@ -122,11 +126,11 @@ export function createApp(repo: ResourceRepository) {
     next();
   });
 
-  api.get("/resources", (req, res) => {
+  api.get("/resources", async (req, res) => {
     const parsed = parseSearch(req.query);
     const page = Math.max(1, Math.min(50, Number(req.query.page) || 1));
     const pageSize = Math.max(1, Math.min(50, Number(req.query.page_size) || 20));
-    const result = repo.search(parsed.filters);
+    const result = await repo.search(parsed.filters);
     const slice = result.hits.slice((page - 1) * pageSize, page * pageSize);
     res.json({
       request_id: req.id,
@@ -139,8 +143,8 @@ export function createApp(repo: ResourceRepository) {
     });
   });
 
-  api.get("/resources/:id", (req, res) => {
-    const found = repo.get(str(req.params.id, 80));
+  api.get("/resources/:id", async (req, res) => {
+    const found = await repo.get(str(req.params.id, 80));
     if (found.status === "published") {
       res.json({ request_id: req.id, status: "published", resource: found.resource });
     } else if (found.status === "withdrawn") {
@@ -148,6 +152,24 @@ export function createApp(repo: ResourceRepository) {
     } else {
       res.status(404).json({ request_id: req.id, status: "not_found", error: "No published resource with that ID." });
     }
+  });
+
+  api.post("/chat", express.json({ limit: "8kb" }), async (req, res) => {
+    // Reject cross-site browser requests without trusting forwarded host headers.
+    const origin = req.get("origin");
+    let sameOrigin = true;
+    try { sameOrigin = !origin || new URL(origin).host === req.get("host"); } catch { sameOrigin = false; }
+    if (!sameOrigin || req.get("sec-fetch-site") === "cross-site") {
+      res.status(403).json({ error: "Cross-site requests are not allowed." }); return;
+    }
+    const input = parseChatInput(req.body);
+    if (!input) { res.status(400).json({ error: "Invalid chat request." }); return; }
+    const interpreter = options.interpret ? async (messages: string[]) => {
+      if (!takeBudget()) throw new Error("Pilot budget reached");
+      return options.interpret!(messages);
+    } : undefined;
+    const answer = await answerChat(repo, input, interpreter);
+    res.json({ request_id: req.id, ...answer });
   });
 
   api.use((req, res) => {
@@ -168,9 +190,10 @@ export function createApp(repo: ResourceRepository) {
 
   app.use((err: unknown, req: Request, res: Response, _next: NextFunction) => {
     // Log the request ID and error type only; no query text or personal data.
-    console.error(`[${req.id}] ${err instanceof Error ? err.name + ": " + err.message : "unknown error"}`);
+    console.error(`[${req.id}] ${err instanceof Error ? err.name : "unknown error"}`);
     if (req.path.startsWith("/api/")) {
-      res.status(500).json({ request_id: req.id, error: "Something went wrong. Please try again." });
+      const status = (err as { status?: number })?.status;
+      res.status(status === 400 || status === 413 ? status : 503).json({ request_id: req.id, error: "This request could not be completed. Please try directory search." });
       return;
     }
     res.status(500).send(messagePage(ctx(req), t(req.lang ?? "en", "error.title"), t(req.lang ?? "en", "error.body")));

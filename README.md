@@ -12,7 +12,7 @@ FieldCompass is the working name. The product serves everyday community needs ac
 
 ## Run the app (pilot vertical slice)
 
-Requires Node 20+.
+Requires Node 22.12+.
 
 ```bash
 npm install
@@ -22,6 +22,8 @@ npm run build && npm start   # compiled build
 ```
 
 What works now: Discover, search with filters and no-match suggestions, resource detail, urgent help, English/Spanish, and on-device saved plans (save, status, notes, export, print, clear). All listings are **fictional sample data** (`src/data/fixtures`) and the app refuses to load them with `APP_ENV=production`. See [ADR 0001](docs/adr/0001-initial-architecture.md) for decisions and what's next.
+
+October 11 pilot update: Apple-style blue/white interface, an interactive Ask screen with directory-only fallback, optional **GLM 4.5 Air via OpenRouter**, and a validated, read-only **MariaDB adapter**. OpenRouter interprets requests; displayed resource facts come from the directory. AI requires explicit user consent and a server-side key. MariaDB requires schema mapping and approved records; no live connection or import is included. See [server setup and remaining launch work](docs/server-setup.md) and [ADR 0002](docs/adr/0002-openrouter-mariadb.md).
 
 ```
 src/domain/     search, geography, schedule rules, record types

@@ -1,5 +1,5 @@
 // Resource repository. In-memory for the vertical slice; the interface is what
-// a PostgreSQL/PostGIS implementation will satisfy in W03.
+// a MariaDB implementation satisfies for the pilot.
 
 import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
@@ -13,8 +13,8 @@ export type Lookup =
   | { status: "not_found" };
 
 export interface ResourceRepository {
-  search(filters: SearchFilters): SearchResult;
-  get(id: string): Lookup;
+  search(filters: SearchFilters): SearchResult | Promise<SearchResult>;
+  get(id: string): Lookup | Promise<Lookup>;
   /** True when any loaded record is fixture data. */
   hasSampleData(): boolean;
 }
@@ -27,12 +27,12 @@ export function toPublic(r: Resource): Resource {
   return {
     ...r,
     locations: r.locations.map((l) =>
-      l.address_visibility === "confidential" ? { ...l, address: null } : l,
+      l.address_visibility === "confidential" ? { id: l.id, access: l.access, address_visibility: l.address_visibility, address: null, notes: null } : l,
     ),
   };
 }
 
-export function createMemoryRepository(records: Resource[], env: AppEnv): ResourceRepository {
+export function createMemoryRepository(records: Resource[], env: AppEnv): Omit<ResourceRepository, "search" | "get"> & { search(filters: SearchFilters): SearchResult; get(id: string): Lookup } {
   if (env === "production" && records.some((r) => r.is_sample)) {
     throw new Error("Refusing to serve sample fixture records in production.");
   }

@@ -49,8 +49,9 @@ export function layout(ctx: PageContext, opts: LayoutOptions): string {
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${opts.title} · FieldCompass</title>
 <meta name="description" content="${t(lang, "brand.descriptor")}">
-<meta name="color-scheme" content="light dark">
+<meta name="color-scheme" content="light">
 <link rel="stylesheet" href="/static/styles.css">
+<link rel="stylesheet" href="/static/guide.css">
 <link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
 </head>
 <body>

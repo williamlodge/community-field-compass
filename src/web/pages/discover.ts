@@ -9,8 +9,15 @@ export function discoverPage(ctx: PageContext): string {
   const body = html`
 <section class="hero">
   <div class="wrap">
-    <h1 class="display">${t(lang, "discover.title")}</h1>
-    <p class="lede">${t(lang, "discover.lede")}</p>
+    <h1 class="display">${lang === "es" ? "Su comunidad." : "Your community."}<br>${lang === "es" ? "Su próximo paso." : "Your next step."}</h1>
+    <p class="lede">${lang === "es" ? "Encuentre apoyo local para la vida diaria." : "Find local support for everyday life."}</p>
+    <div class="assistant-panel">
+      <p class="ai-label">${lang === "es" ? "GUÍA DE RECURSOS CON IA · PILOTO" : "AI RESOURCE GUIDE · PILOT"}</p>
+      <h2>${lang === "es" ? "¿Qué necesita encontrar?" : "What can we help you find?"}</h2>
+      <p>${lang === "es" ? "Guardería, comida, ayuda con facturas…" : "Childcare, groceries, help with bills…"}</p>
+      <a href="/ask" class="btn btn-primary">${icon("chat")}${lang === "es" ? "Iniciar un chat" : "Start a chat"}</a>
+      <p class="fine">${lang === "es" ? "Explore opciones. Haga un plan." : "Explore options. Make a plan."}</p>
+    </div>
     <form class="search-panel" action="/search" method="get" role="search">
       <div class="field field-q">
         <label for="q">${t(lang, "discover.searchLabel")}</label>
@@ -38,10 +45,10 @@ export function discoverPage(ctx: PageContext): string {
 <section class="wrap section">
   <div class="callout">
     <div>
-      <h2 class="callout-title">${t(lang, "discover.askTitle")}</h2>
-      <p>${t(lang, "discover.askBody")}</p>
+      <h2 class="callout-title">${lang === "es" ? "Un poco de claridad ayuda mucho." : "A little clarity goes a long way."}</h2>
+      <p>${lang === "es" ? "Compare opciones y guarde sus próximos pasos en este dispositivo." : "Compare your options and save your next steps on this device."}</p>
     </div>
-    <a class="btn btn-secondary" href="/ask">${icon("chat")}<span>${t(lang, "nav.ask")}</span></a>
+    <a class="btn btn-secondary" href="/saved">${icon("bookmark")}<span>${t(lang, "nav.saved")}</span></a>
   </div>
 </section>`;
   return layout(ctx, { title: t(lang, "nav.discover"), nav: "discover", body });

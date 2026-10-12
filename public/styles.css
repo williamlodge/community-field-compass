@@ -1,57 +1,37 @@
-/* FieldCompass — "Front Range field guide" design tokens.
-   System typography (no web fonts, low-data), restrained 6–8px radii,
-   rule lines instead of shadows, one accent used sparingly.
+/* FieldCompass — approved mobile concept design tokens.
+   System typography (no web fonts, low-data), rounded controls,
+   white surfaces, pale-blue assistant panels, and blue actions.
    Change the brand here; components only reference tokens. */
 
 :root {
-  --paper: #f5f3ec;
+  --paper: #ffffff;
   --surface: #ffffff;
-  --ink: #15201b;
-  --ink-2: #47524c;
-  --line: #d6d1c3;
-  --line-strong: #a9a392;
-  --primary: #1e5a47;
-  --primary-hover: #164536;
-  --primary-tint: #e2ece6;
+  --ink: #111b35;
+  --ink-2: #53617b;
+  --line: #e2e8f2;
+  --line-strong: #b9c5d8;
+  --primary: #0065e8;
+  --primary-hover: #004db6;
+  --primary-tint: #eaf4ff;
   --on-primary: #ffffff;
-  --signal: #c4561c;
+  --signal: #0065e8;
   --urgent: #a11d16;
   --urgent-hover: #82160f;
   --urgent-tint: #fbe8e5;
   --note: #6b4a00;
   --note-tint: #fbf0d6;
-  --focus: #1e5a47;
+  --focus: #0065e8;
 
   --font: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --mono: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, monospace;
-  --radius-sm: 6px;
-  --radius: 8px;
+  --radius-sm: 12px;
+  --radius: 18px;
   --gutter: 16px;
   --maxw: 1120px;
   --tap: 48px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --paper: #111613;
-    --surface: #18201c;
-    --ink: #eef1ec;
-    --ink-2: #b4bdb7;
-    --line: #2c3631;
-    --line-strong: #4b5751;
-    --primary: #7cc4a8;
-    --primary-hover: #9bd5bd;
-    --primary-tint: #1c2e27;
-    --on-primary: #0c1411;
-    --signal: #e98a52;
-    --urgent: #ff9a8f;
-    --urgent-hover: #ffb8b0;
-    --urgent-tint: #3a1a17;
-    --note: #f0c97a;
-    --note-tint: #2e2614;
-    --focus: #9bd5bd;
-  }
-}
+/* Light appearance is locked to the approved reference. */
 
 *, *::before, *::after { box-sizing: border-box; }
 
@@ -193,7 +173,6 @@ h1, h2, h3 { line-height: 1.15; letter-spacing: -0.015em; }
 .btn-danger:hover { background: var(--urgent-tint); color: var(--urgent-hover); }
 .btn-urgent { background: var(--urgent); color: #fff; font-size: 1.125rem; min-height: 56px; }
 .btn-urgent:hover { background: var(--urgent-hover); color: #fff; }
-@media (prefers-color-scheme: dark) { .btn-urgent, .btn-urgent:hover { color: #1a0605; } }
 
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
 
