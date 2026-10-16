@@ -1,4 +1,5 @@
 import { t, type Lang, type MessageKey } from "../i18n/index.js";
+import { analytics } from "./analytics.js";
 import { html, raw, type SafeHtml } from "./html.js";
 import { brandMark, icon } from "./icons.js";
 
@@ -53,6 +54,7 @@ export function layout(ctx: PageContext, opts: LayoutOptions): string {
 <link rel="stylesheet" href="/static/styles.css">
 <link rel="stylesheet" href="/static/guide.css">
 <link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
+${analytics ? html`<script defer src="${analytics.origin}/script.js" data-website-id="${analytics.websiteId}"></script>` : ""}
 </head>
 <body>
 <a class="skip-link" href="#main">${t(lang, "nav.skip")}</a>

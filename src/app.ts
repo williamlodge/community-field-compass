@@ -7,6 +7,7 @@ import type { SearchFilters } from "./domain/search.js";
 import type { AccessMode, CategoryId } from "./domain/types.js";
 import type { ResourceRepository } from "./data/repository.js";
 import { isLang, t, type Lang } from "./i18n/index.js";
+import { contentSecurityPolicy } from "./web/analytics.js";
 import type { PageContext } from "./web/layout.js";
 import { detailPage, goneOrMissingPage } from "./web/pages/detail.js";
 import { discoverPage } from "./web/pages/discover.js";
@@ -68,10 +69,7 @@ export function createApp(repo: ResourceRepository, options: { interpret?: Inter
   app.use((req, res, next) => {
     req.id = randomUUID();
     res.setHeader("X-Request-Id", req.id);
-    res.setHeader(
-      "Content-Security-Policy",
-      "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'none'; form-action 'self'",
-    );
+    res.setHeader("Content-Security-Policy", contentSecurityPolicy());
     res.setHeader("X-Content-Type-Options", "nosniff");
     res.setHeader("Referrer-Policy", "no-referrer");
     res.setHeader("Permissions-Policy", "geolocation=(self), microphone=(), camera=()");
