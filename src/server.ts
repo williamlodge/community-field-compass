@@ -3,6 +3,7 @@ import { loadConfig } from "./config.js";
 import { createMemoryRepository, loadSampleRecords } from "./data/repository.js";
 import { createMariaRepository, openResourcePool } from "./data/mariadb.js";
 import { createFlatMariaRepository } from "./data/flat-mariadb.js";
+import { listPublishedGuides } from "./data/guides.js";
 import { createOpenRouter } from "./ai/openrouter.js";
 
 // Built-in env loader; never expose these values to the browser.
@@ -20,7 +21,7 @@ const aiDailyLimit = Number(process.env.AI_DAILY_LIMIT ?? 40);
 if (!Number.isInteger(aiDailyLimit) || aiDailyLimit < 0 || aiDailyLimit > 1000) throw new Error("Invalid AI_DAILY_LIMIT");
 const interpret = process.env.OPENROUTER_API_KEY && process.env.AI_ENABLED === "true"
   ? createOpenRouter(process.env.OPENROUTER_API_KEY) : undefined;
-const app = createApp(repo, { interpret, aiDailyLimit });
+const app = createApp(repo, { interpret, aiDailyLimit, listGuides: source === "co_resources" ? () => listPublishedGuides(pool!) : undefined });
 
 const server = app.listen(config.port, "127.0.0.1", () => {
   console.log(`FieldCompass (${config.env}) listening on http://localhost:${config.port}`);

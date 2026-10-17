@@ -183,6 +183,10 @@ const en = {
 
   "guides.title": "Guides",
   "guides.body": "Reviewed step-by-step guides (affordable childcare, utility bills, food assistance, and more) are in editorial review. They'll appear here once reviewed in English and Spanish.",
+  "guides.liveIntro": "Practical steps from the Field Compass directory. Details may change; confirm requirements before you apply or travel.",
+  "guides.englishOnly": "Guide content is currently in English. Spanish review is pending.",
+  "guides.minutes": "About {n} minutes",
+  "guides.updated": "Record updated {date}",
 
   "urgent.title": "Urgent help",
   "urgent.lede": "You don't need to search or chat to get help now.",
@@ -385,6 +389,10 @@ const es: Record<MessageKey, string> = {
 
   "guides.title": "Guías",
   "guides.body": "Las guías paso a paso (cuidado infantil asequible, facturas de servicios, asistencia alimentaria y más) están en revisión editorial. Aparecerán aquí cuando estén revisadas en inglés y español.",
+  "guides.liveIntro": "Pasos prácticos del directorio Field Compass. Los detalles pueden cambiar; confirme los requisitos antes de solicitar ayuda o viajar.",
+  "guides.englishOnly": "El contenido de las guías está disponible en inglés por ahora. La revisión en español está pendiente.",
+  "guides.minutes": "Unos {n} minutos",
+  "guides.updated": "Registro actualizado el {date}",
 
   "urgent.title": "Ayuda urgente",
   "urgent.lede": "No necesita buscar ni chatear para obtener ayuda ahora.",

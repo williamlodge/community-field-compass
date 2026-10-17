@@ -25,7 +25,7 @@ What works now: Discover, search with filters and no-match suggestions, resource
 
 October 11 pilot update: Apple-style blue/white interface, an interactive Ask screen with directory-only fallback, optional **GLM 4.5 Air via OpenRouter**, and a validated, read-only **MariaDB adapter**. OpenRouter interprets requests; displayed resource facts come from the directory. AI requires explicit user consent and a server-side key. See [server setup and remaining launch work](docs/server-setup.md) and [ADR 0002](docs/adr/0002-openrouter-mariadb.md).
 
-October 17 resource bridge: `fieldcompass.site` reads active, non-seed Colorado listings from `admin_co_resources.resources`. The bridge marks service areas and verification as unknown when the source row does not supply them, keeps confidential addresses out of public output, and updates its read-only cache within one minute. The admin panel remains at `app.fieldcompass.site/admin`.
+October 17 resource bridge: `fieldcompass.site` reads active, non-seed Colorado listings from `admin_co_resources.resources` and published guides from `admin_co_resources.guides`. The bridge marks service areas and verification as unknown when the source row does not supply them, keeps confidential addresses out of public output, and updates its read-only resource cache within one minute. The admin panel remains at `app.fieldcompass.site/admin`.
 
 ```
 src/domain/     search, geography, schedule rules, record types

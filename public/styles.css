@@ -270,6 +270,12 @@ input[aria-invalid="true"] { border-color: var(--urgent); }
 .hours-unknown { color: var(--note); }
 .hours-ex { font-weight: 500; }
 .pagination { display: flex; align-items: center; justify-content: center; gap: 1rem; margin: 2rem 0; }
+.guide-list { display: grid; gap: 1.5rem; margin-top: 2rem; }
+.guide-card { border: 1px solid var(--line); border-radius: 14px; padding: 1.25rem; }
+.guide-card h2 { margin: 0 0 .5rem; font-size: 1.35rem; }
+.guide-steps { padding-left: 1.5rem; }
+.guide-steps li { margin-top: 1rem; }
+.guide-steps p { margin: .25rem 0 0; }
 
 .unconfirmed, .unknown { color: var(--note); font-size: 0.9375rem; margin: 8px 0 0; }
 .unknown { margin: 0; }

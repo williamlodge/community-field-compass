@@ -1,6 +1,6 @@
 # Server connection handoff
 
-The public directory at `fieldcompass.site` uses a read-only bridge to the existing `admin_co_resources.resources` table. This does not mean the wider product launch checklist is complete: source reuse permissions, content verification, Spanish review, and other integrations remain open. AI generation is disabled on the public site.
+The public directory at `fieldcompass.site` uses a read-only bridge to the existing `admin_co_resources.resources` and `guides` tables. This does not mean the wider product launch checklist is complete: source reuse permissions, content verification, Spanish review, and other integrations remain open. AI generation is disabled on the public site.
 
 ## Run locally
 

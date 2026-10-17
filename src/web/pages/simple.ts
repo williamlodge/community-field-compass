@@ -1,4 +1,6 @@
 import { clientMessages, t } from "../../i18n/index.js";
+import type { PublicGuide } from "../../data/guides.js";
+import { formatDate } from "../format.js";
 import { html } from "../html.js";
 import { icon } from "../icons.js";
 import { layout, type PageContext } from "../layout.js";
@@ -32,12 +34,20 @@ export function askPage(ctx: PageContext): string {
   return layout(ctx, { title: t(lang, "nav.ask"), nav: "ask", body });
 }
 
-export function guidesPage(ctx: PageContext): string {
+export function guidesPage(ctx: PageContext, guides: PublicGuide[] = []): string {
   const { lang } = ctx;
   const body = html`<div class="wrap page narrow">
   <h1 class="page-title">${t(lang, "guides.title")}</h1>
-  <p class="lede">${t(lang, "guides.body")}</p>
-  <p><a class="btn btn-primary" href="/search">${icon("search")}<span>${t(lang, "ask.searchInstead")}</span></a></p>
+  ${guides.length ? html`<p class="lede">${t(lang, "guides.liveIntro")}</p>
+    ${lang === "es" ? html`<p class="notice">${t(lang, "guides.englishOnly")}</p>` : ""}
+    <div class="guide-list">${guides.map(g => html`<article class="guide-card" id="guide-${g.slug}">
+      <h2>${g.title}</h2>
+      ${g.summary ? html`<p>${g.summary}</p>` : ""}
+      <p class="fine">${t(lang, "guides.minutes", { n: g.minutes })} · ${t(lang, "guides.updated", { date: formatDate(lang, g.updatedAt) })}</p>
+      <ol class="guide-steps">${g.steps.map(s => html`<li><strong>${s.title}</strong><p>${s.body}</p></li>`)}</ol>
+    </article>`)}</div>`
+    : html`<p class="lede">${t(lang, "guides.body")}</p>
+      <p><a class="btn btn-primary" href="/search">${icon("search")}<span>${t(lang, "ask.searchInstead")}</span></a></p>`}
 </div>`;
   return layout(ctx, { title: t(lang, "guides.title"), nav: "guides", body });
 }

@@ -6,6 +6,7 @@ import { resolvePlace } from "./domain/geography.js";
 import type { SearchFilters } from "./domain/search.js";
 import type { AccessMode, CategoryId } from "./domain/types.js";
 import type { ResourceRepository } from "./data/repository.js";
+import type { PublicGuide } from "./data/guides.js";
 import { isLang, t, type Lang } from "./i18n/index.js";
 import { contentSecurityPolicy } from "./web/analytics.js";
 import type { PageContext } from "./web/layout.js";
@@ -61,7 +62,7 @@ export function parseSearch(query: Request["query"]): Omit<SearchView, "result">
   return { params, filters, placeUnrecognized: !!params.place && !place, page };
 }
 
-export function createApp(repo: ResourceRepository, options: { interpret?: Interpret; aiDailyLimit?: number } = {}) {
+export function createApp(repo: ResourceRepository, options: { interpret?: Interpret; aiDailyLimit?: number; listGuides?: () => Promise<PublicGuide[]> } = {}) {
   const app = express();
   app.disable("x-powered-by");
   app.set("trust proxy", "loopback");
@@ -114,7 +115,7 @@ export function createApp(repo: ResourceRepository, options: { interpret?: Inter
 
   app.get("/saved", (req, res) => res.send(savedPage(ctx(req))));
   app.get("/ask", (req, res) => res.send(askPage(ctx(req), !!options.interpret)));
-  app.get("/guides", (req, res) => res.send(guidesPage(ctx(req))));
+  app.get("/guides", async (req, res) => res.send(guidesPage(ctx(req), options.listGuides ? await options.listGuides() : [])));
   app.get("/urgent", (req, res) => res.send(urgentPage(ctx(req))));
 
   // ---- JSON API (handoff §5) ---------------------------------------------
@@ -151,6 +152,10 @@ export function createApp(repo: ResourceRepository, options: { interpret?: Inter
     } else {
       res.status(404).json({ request_id: req.id, status: "not_found", error: "No published resource with that ID." });
     }
+  });
+
+  api.get("/guides", async (req, res) => {
+    res.json({ request_id: req.id, results: options.listGuides ? await options.listGuides() : [] });
   });
 
   api.post("/chat", express.json({ limit: "8kb" }), async (req, res) => {
