@@ -19,6 +19,7 @@ export type OperatingStatus = "active" | "temporarily_closed" | "permanently_clo
 
 /** Where a service is offered. Independent of where its office sits (FC-01, T02). */
 export type ServiceArea =
+  | { type: "unknown" }
   | { type: "statewide" }
   | { type: "remote" }
   | { type: "counties"; counties: string[] }
@@ -109,9 +110,11 @@ export interface Resource {
   languages: string[] | null;
   accessibility: Accessibility;
   schedule: Schedule | null;
+  /** Published text hours when structured hours were not supplied. */
+  published_hours_text?: string | null;
   operating_status: OperatingStatus;
   sources: SourceRef[];
-  source_updated_at: string;
+  source_updated_at: string | null;
   fetched_at: string;
   reviewed_at: string | null;
   record_version: number;

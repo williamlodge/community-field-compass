@@ -269,6 +269,7 @@ input[aria-invalid="true"] { border-color: var(--urgent); }
 .hours-closed { color: var(--ink-2); }
 .hours-unknown { color: var(--note); }
 .hours-ex { font-weight: 500; }
+.pagination { display: flex; align-items: center; justify-content: center; gap: 1rem; margin: 2rem 0; }
 
 .unconfirmed, .unknown { color: var(--note); font-size: 0.9375rem; margin: 8px 0 0; }
 .unknown { margin: 0; }

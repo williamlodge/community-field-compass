@@ -1,6 +1,6 @@
 # Server connection handoff
 
-This is a development pilot, not a production launch. No live key or database has been connected, no data imported, and no server deployment performed.
+The public directory at `fieldcompass.site` uses a read-only bridge to the existing `admin_co_resources.resources` table. This does not mean the wider product launch checklist is complete: source reuse permissions, content verification, Spanish review, and other integrations remain open. AI generation is disabled on the public site.
 
 ## Run locally
 
@@ -22,17 +22,17 @@ Official references: [OpenRouter API](https://openrouter.ai/docs/quickstart), [p
 
 ## Your MariaDB resources
 
-Please supply a **schema-only export or sanitized example row** next. Do not provide production passwords or client records. We need table names, field meanings, stable IDs, publication status, source attribution, service areas, schedules, and rules for confidential locations. Food Bank of the Rockies reuse/attribution requirements still need confirmation.
+The live bridge uses the flat `resources` table in `admin_co_resources`. It reads active Colorado rows from 211 Colorado and Food Bank of the Rockies, excluding seed rows. Source URLs in the table are empty, so the site links to each source's general directory. No row currently has a verification date; the public site labels service area and verification as unconfirmed. Food Bank of the Rockies and 211 reuse/attribution requirements still need confirmation.
 
-The adapter expects a dedicated `fc_resources` integration table from `db/001_resources.sql`. Apply it deliberately to the intended database; the app never runs migrations or writes to your data. Mapping the existing source tables into that table is pending the actual schema. Each row contains a stable `id`, `publication_status`, and `record_json` matching `src/domain/types.ts`, validated by `src/data/schema.ts`. Unknown upstream properties are stripped. The JSON ID and status must match the row. Drafts stay private; withdrawn rows are retained so saved plans can recognize removals. Sample records are rejected in every MariaDB environment.
+The older `mariadb` adapter still expects a separate `fc_resources` integration table from `db/001_resources.sql`. The `co_resources` adapter reads the existing flat table directly and never writes to it. Both adapters validate the public resource shape; sample records are rejected in production.
 
-Use a dedicated SELECT-only database account. Set `RESOURCE_SOURCE=mariadb`, `DB_HOST`, `DB_PORT`, `DB_NAME`, `DB_USER`, and `DB_PASSWORD`. Remote connections require `DB_TLS=true` and certificate validation; optionally supply `DB_CA_FILE` for a private CA. Never open MariaDB publicly just to connect the app—run it alongside the server or use private networking.
+Use a dedicated SELECT-only database account. Set `RESOURCE_SOURCE=co_resources`, `DB_HOST`, `DB_PORT`, `DB_NAME`, `DB_USER`, and `DB_PASSWORD`. Remote connections require `DB_TLS=true` and certificate validation; optionally supply `DB_CA_FILE` for a private CA. Never open MariaDB publicly just to connect the app—run it alongside the server or use private networking.
 
 The pilot performs a bounded read of up to 10,000 published records per search. Beyond that, it fails closed rather than silently dropping listings. Before large-scale use, implement indexed database search, load testing, approved import staging/rollback, and operational monitoring. Database failures do not silently substitute sample data. `/healthz` is a process-liveness check, not a database/provider readiness check.
 
 ## Still required before public launch
 
-- Real resource import/mapping, permission review, provenance and correction workflow.
+- Source reuse permission review, item-level provenance, and a correction workflow.
 - Live MariaDB and OpenRouter integration tests with approved credentials.
 - NWS weather/alerts and official Denver alert access, reviewed guides, phone/voice.
 - Human review of Spanish copy and resource translations, accessibility audit, realistic AI evaluations.

@@ -2,6 +2,7 @@ import { createApp } from "./app.js";
 import { loadConfig } from "./config.js";
 import { createMemoryRepository, loadSampleRecords } from "./data/repository.js";
 import { createMariaRepository, openResourcePool } from "./data/mariadb.js";
+import { createFlatMariaRepository } from "./data/flat-mariadb.js";
 import { createOpenRouter } from "./ai/openrouter.js";
 
 // Built-in env loader; never expose these values to the browser.
@@ -11,9 +12,10 @@ if (existsSync(".env")) loadEnvFile(".env");
 
 const config = loadConfig();
 const source = process.env.RESOURCE_SOURCE ?? "sample";
-if (!["sample", "mariadb"].includes(source)) throw new Error("Invalid RESOURCE_SOURCE");
-const pool = source === "mariadb" ? openResourcePool() : undefined;
-const repo = pool ? createMariaRepository(pool, config.env) : createMemoryRepository(loadSampleRecords(), config.env);
+if (!["sample", "mariadb", "co_resources"].includes(source)) throw new Error("Invalid RESOURCE_SOURCE");
+const pool = source === "sample" ? undefined : openResourcePool();
+const repo = source === "co_resources" ? createFlatMariaRepository(pool!, config.env)
+  : pool ? createMariaRepository(pool, config.env) : createMemoryRepository(loadSampleRecords(), config.env);
 const aiDailyLimit = Number(process.env.AI_DAILY_LIMIT ?? 40);
 if (!Number.isInteger(aiDailyLimit) || aiDailyLimit < 0 || aiDailyLimit > 1000) throw new Error("Invalid AI_DAILY_LIMIT");
 const interpret = process.env.OPENROUTER_API_KEY && process.env.AI_ENABLED === "true"

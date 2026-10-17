@@ -17,7 +17,7 @@ export interface SearchFilters {
 export type FilterKey = "place" | "category" | "language" | "free" | "mode" | "wheelchair";
 
 export interface MatchReason {
-  kind: "area" | "category" | "text" | "language" | "free" | "mode" | "wheelchair";
+  kind: "area" | "office" | "category" | "text" | "language" | "free" | "mode" | "wheelchair";
   /** For area: which county or "statewide"/"remote". */
   detail?: string;
 }
@@ -153,6 +153,7 @@ function indexResource(r: Resource): Indexed {
  */
 function areaMatch(r: Resource, place: ResolvedPlace): string | null {
   const a = r.service_area;
+  if (a.type === "unknown") return "unknown";
   if (a.type === "statewide") return "statewide";
   if (a.type === "remote") return "remote";
   if (a.type === "counties") return place.counties.find((c) => a.counties.includes(c)) ?? null;
@@ -162,6 +163,12 @@ function areaMatch(r: Resource, place: ResolvedPlace): string | null {
     return overlaps ? "unknown" : null;
   }
   return null;
+}
+
+function officeMatch(r: Resource, place: ResolvedPlace): boolean {
+  return r.locations.some(l => l.address && (place.zip
+    ? l.address.zip === place.zip
+    : place.kind === "city" && l.address.city.toLowerCase() === place.label.toLowerCase()));
 }
 
 type FilterOutcome = "match" | "unknown" | "fail";
@@ -184,7 +191,7 @@ function checkFilter(r: Resource, key: FilterKey, f: SearchFilters): FilterOutco
       if (r.cost.kind === "unknown") return "unknown";
       return r.cost.kind === "free" ? "match" : "fail";
     case "mode":
-      return !f.mode || r.modes.includes(f.mode) ? "match" : "fail";
+      return !f.mode ? "match" : r.modes.length === 0 ? "unknown" : r.modes.includes(f.mode) ? "match" : "fail";
     case "wheelchair":
       if (!f.wheelchair) return "match";
       if (r.accessibility.wheelchair === "unknown") return "unknown";
@@ -247,6 +254,9 @@ function runSearch(index: Indexed[], f: SearchFilters): { hits: SearchHit[]; cat
       reasons.push({ kind: "area", detail: area });
       // Documented local coverage ranks above statewide/remote coverage.
       score += area === "statewide" || area === "remote" ? 1 : 3;
+    } else if (f.place && officeMatch(r, f.place)) {
+      score += 3;
+      reasons.push({ kind: "office", detail: f.place.label });
     }
     if (f.category) reasons.push({ kind: "category" });
     if (f.language && !unconfirmed.includes("language")) reasons.push({ kind: "language", detail: f.language });

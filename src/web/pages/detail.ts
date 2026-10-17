@@ -16,7 +16,8 @@ function section(title: string, content: SafeHtml | string): SafeHtml {
 
 function scheduleTable(lang: Lang, r: Resource): SafeHtml {
   const s = r.schedule;
-  if (!s || s.regular.length === 0) return unknown(lang);
+  if (!s || s.regular.length === 0) return r.published_hours_text
+    ? html`<p>${r.published_hours_text}</p><p class="fine">${t(lang, "hours.disclaimer")}</p>` : unknown(lang);
   const loc = locale(lang);
   const rows = [1, 2, 3, 4, 5, 6, 0].map((day) => {
     const periods = s.regular.filter((p) => p.day === day);
@@ -104,7 +105,7 @@ export function detailPage(ctx: PageContext, r: Resource, backHref: string | nul
         t(lang, "detail.source"),
         html`<ul class="plain-list fine">
           ${r.sources.map((s) => html`<li><a href="${s.url}" rel="noopener noreferrer">${s.name}</a></li>`)}
-          <li>${t(lang, "detail.sourceUpdated", { date: formatDate(lang, r.source_updated_at) })}</li>
+          ${r.source_updated_at ? html`<li>${t(lang, "detail.sourceUpdated", { date: formatDate(lang, r.source_updated_at) })}</li>` : ""}
           <li>${t(lang, "detail.fetched", { date: formatDate(lang, r.fetched_at) })}</li>
           <li>${r.reviewed_at ? t(lang, "detail.reviewed", { date: formatDate(lang, r.reviewed_at) }) : t(lang, "detail.notReviewed")}</li>
           <li>${t(lang, "detail.version", { v: r.record_version })}</li>

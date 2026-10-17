@@ -12,6 +12,7 @@ export interface SearchView {
   filters: SearchFilters;
   placeUnrecognized: boolean;
   result: SearchResult;
+  page: number;
 }
 
 const FILTER_LABEL: Record<string, MessageKey> = {
@@ -52,8 +53,12 @@ function resultCard(lang: Lang, hit: SearchHit): SafeHtml {
 export function searchPage(ctx: PageContext, view: SearchView): string {
   const { lang } = ctx;
   const { params: p, result, filters } = view;
-  const confirmed = result.hits.filter((h) => h.unconfirmed.length === 0);
-  const mayFit = result.hits.filter((h) => h.unconfirmed.length > 0);
+  const pageCount = Math.max(1, Math.ceil(result.total / 30));
+  const page = Math.min(view.page, pageCount);
+  const visible = result.hits.slice((page - 1) * 30, page * 30);
+  const confirmed = visible.filter((h) => h.unconfirmed.length === 0);
+  const mayFit = visible.filter((h) => h.unconfirmed.length > 0);
+  const pageHref = (n: number) => `/search?${queryString(p)}${queryString(p) ? "&" : ""}page=${n}`;
   const countKey = result.total === 1 ? "search.count.one" : "search.count.other";
   const placeLabel = filters.place?.label ?? p.place;
 
@@ -125,6 +130,11 @@ export function searchPage(ctx: PageContext, view: SearchView): string {
       <p class="fine">${t(lang, "search.mayFitBody")}</p>
       <ol class="results">${mayFit.map((h) => resultCard(lang, h))}</ol></section>`
     : ""}
+  ${pageCount > 1 ? html`<nav class="pagination" aria-label="${t(lang, "search.pages")}">
+    ${page > 1 ? html`<a class="btn btn-secondary" href="${pageHref(page - 1)}">${t(lang, "search.previous")}</a>` : ""}
+    <span>${t(lang, "search.pageCount", { page, pages: pageCount })}</span>
+    ${page < pageCount ? html`<a class="btn btn-secondary" href="${pageHref(page + 1)}">${t(lang, "search.next")}</a>` : ""}
+  </nav>` : ""}
 </div>`;
   return layout(ctx, { title: t(lang, "search.title"), nav: "discover", body });
 }

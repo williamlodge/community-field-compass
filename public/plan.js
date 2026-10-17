@@ -251,7 +251,7 @@
       if (r.website) lines.push("   " + r.website);
       lines.push("   " + msg("saved.status") + ": " + msg("saved.status." + item.status));
       if (item.note) lines.push("   " + item.note);
-      lines.push("   Source updated: " + fmtDate(r.source_updated_at));
+      if (r.source_updated_at) lines.push("   Source updated: " + fmtDate(r.source_updated_at));
       lines.push("");
     });
     lines.push(msg("saved.confirmReminder"));

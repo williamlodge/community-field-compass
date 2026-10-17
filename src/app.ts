@@ -57,7 +57,8 @@ export function parseSearch(query: Request["query"]): Omit<SearchView, "result">
     mode: (params.mode || undefined) as AccessMode | undefined,
     wheelchair: params.wheelchair || undefined,
   };
-  return { params, filters, placeUnrecognized: !!params.place && !place };
+  const page = Math.max(1, Math.min(1000, Math.floor(Number(query.page) || 1)));
+  return { params, filters, placeUnrecognized: !!params.place && !place, page };
 }
 
 export function createApp(repo: ResourceRepository, options: { interpret?: Interpret; aiDailyLimit?: number } = {}) {

@@ -21,9 +21,11 @@ npm test           # domain + HTTP acceptance tests
 npm run build && npm start   # compiled build
 ```
 
-What works now: Discover, search with filters and no-match suggestions, resource detail, urgent help, English/Spanish, and on-device saved plans (save, status, notes, export, print, clear). All listings are **fictional sample data** (`src/data/fixtures`) and the app refuses to load them with `APP_ENV=production`. See [ADR 0001](docs/adr/0001-initial-architecture.md) for decisions and what's next.
+What works now: Discover, search with filters and no-match suggestions, resource detail, urgent help, English/Spanish, and on-device saved plans (save, status, notes, export, print, clear). The default local mode uses **fictional sample data** (`src/data/fixtures`) and refuses to load it with `APP_ENV=production`. The `co_resources` mode reads the existing Colorado resource database with SELECT-only access.
 
-October 11 pilot update: Apple-style blue/white interface, an interactive Ask screen with directory-only fallback, optional **GLM 4.5 Air via OpenRouter**, and a validated, read-only **MariaDB adapter**. OpenRouter interprets requests; displayed resource facts come from the directory. AI requires explicit user consent and a server-side key. MariaDB requires schema mapping and approved records; no live connection or import is included. See [server setup and remaining launch work](docs/server-setup.md) and [ADR 0002](docs/adr/0002-openrouter-mariadb.md).
+October 11 pilot update: Apple-style blue/white interface, an interactive Ask screen with directory-only fallback, optional **GLM 4.5 Air via OpenRouter**, and a validated, read-only **MariaDB adapter**. OpenRouter interprets requests; displayed resource facts come from the directory. AI requires explicit user consent and a server-side key. See [server setup and remaining launch work](docs/server-setup.md) and [ADR 0002](docs/adr/0002-openrouter-mariadb.md).
+
+October 17 resource bridge: `fieldcompass.site` reads active, non-seed Colorado listings from `admin_co_resources.resources`. The bridge marks service areas and verification as unknown when the source row does not supply them, keeps confidential addresses out of public output, and updates its read-only cache within one minute. The admin panel remains at `app.fieldcompass.site/admin`.
 
 ```
 src/domain/     search, geography, schedule rules, record types
@@ -36,7 +38,7 @@ tests/          vitest + supertest
 
 ## Status
 
-This repository contains planning documents, a visual concept, and the first vertical slice of the application (not deployed). FieldCompass is a provisional name; the mockup still uses the earlier Colorado Community wordmark. The written scope takes precedence over the mockup.
+This repository contains planning documents, a visual concept, and the deployed first vertical slice of the application. FieldCompass is a provisional name; the mockup still uses the earlier Colorado Community wordmark. The written scope takes precedence over the mockup.
 
 The intended first release includes an accessible resource directory, grounded AI chat, reviewed guides, saved plans, weather, and official-alert access. Browser voice, a dedicated AI phone line, and optional synchronization and reminders are proposed later releases.
 

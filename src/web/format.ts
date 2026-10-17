@@ -17,6 +17,7 @@ function list(lang: Lang, items: string[]): string {
 
 export function areaText(lang: Lang, r: Resource): string {
   const a = r.service_area;
+  if (a.type === "unknown") return t(lang, "area.unknown");
   if (a.type === "statewide") return t(lang, "area.statewide");
   if (a.type === "remote") return t(lang, "area.remote");
   if (a.type === "counties") return t(lang, a.counties.length > 1 ? "area.countiesPlural" : "area.counties", { list: list(lang, a.counties) });
@@ -29,6 +30,8 @@ export function languagesText(lang: Lang, codes: string[]): string {
 
 export function reasonText(lang: Lang, r: MatchReason): string | null {
   switch (r.kind) {
+    case "office":
+      return t(lang, "reason.office", { detail: r.detail ?? "" });
     case "area":
       if (r.detail === "statewide") return t(lang, "reason.area.statewide");
       if (r.detail === "remote") return t(lang, "reason.area.remote");
@@ -50,6 +53,7 @@ export function hoursLine(lang: Lang, r: Resource, now = new Date()): SafeHtml {
   if (r.operating_status === "temporarily_closed") {
     return html`<p class="hours hours-closed">${icon("clock")}<span>${t(lang, "status.temporarily_closed")}</span></p>`;
   }
+  if (r.published_hours_text) return html`<p class="hours hours-unknown">${icon("clock")}<span>${t(lang, "hours.listed", { hours: r.published_hours_text })}</span></p>`;
   const s = hoursStatus(r.schedule, now);
   if (s.state === "unknown") return html`<p class="hours hours-unknown">${icon("clock")}<span>${t(lang, "hours.unknown")}</span></p>`;
   const label = s.exceptionLabel ? html` <span class="hours-ex">${t(lang, "hours.exception", { label: s.exceptionLabel })}</span>` : "";

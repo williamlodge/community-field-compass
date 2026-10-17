@@ -16,6 +16,7 @@ const schema = z.object({
   category_ids: z.array(z.string().refine(v => CATEGORIES.some(c => c.id === v))).min(1).max(10),
   keywords: z.array(text).max(100),
   service_area: z.discriminatedUnion("type", [
+    z.object({ type: z.literal("unknown") }),
     z.object({ type: z.literal("statewide") }), z.object({ type: z.literal("remote") }),
     z.object({ type: z.literal("counties"), counties: z.array(text).max(64) }),
     z.object({ type: z.literal("zips"), zips: z.array(z.string().regex(/^\d{5}$/)).max(2000) }),
@@ -32,10 +33,10 @@ const schema = z.object({
     regular: z.array(hours.extend({ day: z.number().int().min(0).max(6) })).max(100),
     exceptions: z.array(z.object({ date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/), closed: z.boolean(), hours: hours.nullable().optional(), label: optional })).max(500),
     intake_cutoff_note: optional, source_id: id,
-  }).nullable(),
+  }).nullable(), published_hours_text: optional,
   operating_status: z.enum(["active", "temporarily_closed", "permanently_closed", "unknown"]),
   sources: z.array(z.object({ id, name: text, url, rights: text })).min(1).max(50),
-  source_updated_at: date, fetched_at: date, reviewed_at: date.nullable(),
+  source_updated_at: date.nullable(), fetched_at: date, reviewed_at: date.nullable(),
   record_version: z.number().int().positive(), publication_status: z.enum(["draft", "published", "withdrawn"]), is_sample: z.boolean(),
 });
 
