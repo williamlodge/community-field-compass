@@ -12,7 +12,8 @@
     "start": "node dist/server.js",
     "build": "tsc -p tsconfig.build.json && node scripts/copy-fixtures.mjs",
     "typecheck": "tsc --noEmit",
-    "test": "vitest run"
+    "test": "vitest run",
+    "scrape": "tsx scripts/scrape.ts"
   },
   "dependencies": {
     "express": "^5.2.1",
